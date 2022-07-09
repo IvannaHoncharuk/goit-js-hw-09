@@ -23,8 +23,8 @@ function handleSubmit(event) {
 
   for (let i = 1; i < amountValue + 1; i++) {
     createPromise(i, delayValue)
-      .then(({ position, delay }) => onSuccessMsg(position, delay))
-      .catch(({ position, delay }) => onErrorMsg(position, delay));
+      .then(({ position, delay }) => onSuccess(position, delay))
+      .catch(({ position, delay }) => onError(position, delay));
     delayValue += stepValue;
   }
 }
@@ -45,13 +45,13 @@ function createPromise(position, delay) {
   return promise;
 }
 
-function onSuccessMsg(position, delay) {
+function onSuccess(position, delay) {
   Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, {
     useIcon: false,
   });
 }
 
-function onErrorMsg(position, delay) {
+function onError(position, delay) {
   Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {
     useIcon: false,
   });
